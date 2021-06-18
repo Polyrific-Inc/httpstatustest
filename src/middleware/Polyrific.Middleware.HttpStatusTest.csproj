@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net5.0;netcoreapp3.1;netcoreapp2.1</TargetFrameworks>
+    <IsPackable>true</IsPackable>
+    <PackageId>Polyrific.Middleware.HttpStatusTest</PackageId>
+    <Description>A simple ASP.NET middleware to add an endpoint in the app to test HTTP Status response</Description>
+    <PackageTags>HTTP Status;Middleware;Polyrific</PackageTags>
+    <Version>1.0.0</Version>
+    <Authors>Polyrific</Authors>
+    <Company>Polyrific</Company>
+    <PackageIcon>polyrific code logo.png</PackageIcon>
+    <PackageIconUrl />
+    <RepositoryUrl>https://github.com/Polyrific-Inc/httpstatustest</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' != 'netcoreapp2.1' ">
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.1' ">
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\images\polyrific code logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
