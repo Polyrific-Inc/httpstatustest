@@ -16,7 +16,23 @@ namespace Polyrific.Middleware.HttpStatusTest
         /// <returns></returns>
         public static IApplicationBuilder UseHttpStatusTest(this IApplicationBuilder app)
         {
-            return app.UseMiddleware<HttpStatusTestMiddleware>();
+            return app.UseHttpStatusTest(null);
+        }
+
+        /// <summary>
+        /// Inject the HttpStatus Test middleware to the request pipeline with some custom configurations
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="configureConfig">The custom configurations</param>
+        /// <returns></returns>
+        public static IApplicationBuilder UseHttpStatusTest(this IApplicationBuilder app, Action<HttpStatusTestConfig> configureConfig)
+        {
+            var config = new HttpStatusTestConfig();
+
+            if (configureConfig != null)
+                configureConfig(config);
+
+            return app.UseMiddleware<HttpStatusTestMiddleware>(config);
         }
     }
 }

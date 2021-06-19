@@ -44,7 +44,10 @@ namespace mvc
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseHttpStatusTest();
+            app.UseHttpStatusTest(config => {
+                config.TestPath = "/responsetest";
+                config.CodeKeyName = "code";
+            });
 
             app.UseRouting();
 
