@@ -3,6 +3,7 @@ name: Middleware CI
 on:
   push:
     branches: [ main ]
+    paths: [ 'src/**' ]
     tags: [ pack/* ]
     
 env:
