@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
 namespace Polyrific.Middleware.HttpStatusTest
@@ -26,6 +27,9 @@ namespace Polyrific.Middleware.HttpStatusTest
                     context.Response.StatusCode = code;
                 else
                     context.Response.StatusCode = StatusCodes.Status200OK;
+                
+                context.Response.ContentType = "text/plain";
+                await context.Response.WriteAsync($"The {context.Response.StatusCode} status code was returned.");
 
                 return;
             }
