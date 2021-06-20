@@ -16,11 +16,20 @@ namespace Polyrific.Middleware.HttpStatusTest
         /// </summary>
         /// <value></value>
         public string CodeKeyName { get; set; }
+
+        /// <summary>
+        /// Whether the middleware is enabled or not
+        /// </summary>
+        /// <value></value>
+        public bool IsEnabled { get; set; }
+        
+        
         
         public HttpStatusTestConfig()
         {
             TestPath = "/httpstatus";
             CodeKeyName = "c";
+            IsEnabled = true;
         }
     }
 }

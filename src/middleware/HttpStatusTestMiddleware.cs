@@ -20,7 +20,7 @@ namespace Polyrific.Middleware.HttpStatusTest
 
         public async Task InvokeAsync(HttpContext context)
         {
-            if (context.Request.Path == _config.TestPath)
+            if (_config.IsEnabled && context.Request.Path == _config.TestPath)
             {
                 var expectedCode = context.Request.Query[_config.CodeKeyName];
                 if (!string.IsNullOrEmpty(expectedCode) && int.TryParse(expectedCode, out int code))
