@@ -43,7 +43,10 @@ namespace api
 
             app.UseHttpsRedirection();
 
-            app.UseHttpStatusTest();
+            app.UseHttpStatusTest(config => {
+                config.IsEnabled = Configuration.GetValue<bool>("IsHttpStatusTestEnabled");
+            });
+
             app.UseMvc();
         }
     }
