@@ -48,10 +48,13 @@ namespace web
 
             app.UseAuthorization();
 
-            app.UseHttpStatusTest();
-
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHttpStatusTest(config =>
+                {
+                    config.IsEnabled = Configuration.GetValue<bool>("IsHttpStatusTestEnabled");
+                });
+
                 endpoints.MapRazorPages();
             });
         }

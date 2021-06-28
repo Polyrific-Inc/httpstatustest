@@ -20,19 +20,14 @@ namespace Polyrific.Middleware.HttpStatusTest
 
         public async Task InvokeAsync(HttpContext context)
         {
-            if (_config.IsEnabled && context.Request.Path == _config.TestPath)
-            {
-                var expectedCode = context.Request.Query[_config.CodeKeyName];
-                if (!string.IsNullOrEmpty(expectedCode) && int.TryParse(expectedCode, out int code))
-                    context.Response.StatusCode = code;
-                else
-                    context.Response.StatusCode = StatusCodes.Status200OK;
+            var expectedCode = context.Request.Query[_config.CodeKeyName];
+            if (!string.IsNullOrEmpty(expectedCode) && int.TryParse(expectedCode, out int code))
+                context.Response.StatusCode = code;
+            else
+                context.Response.StatusCode = StatusCodes.Status200OK;
                 
-                context.Response.ContentType = "text/plain";
-                await context.Response.WriteAsync($"The {context.Response.StatusCode} status code was returned.");
-
-                return;
-            }
+            context.Response.ContentType = "text/plain";
+            await context.Response.WriteAsync($"The {context.Response.StatusCode} status code was returned.");
 
             await _next(context);
         }

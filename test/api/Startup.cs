@@ -44,6 +44,8 @@ namespace api
             app.UseHttpsRedirection();
 
             app.UseHttpStatusTest(config => {
+                config.TestPath = "/responsetest";
+                config.CodeKeyName = "code";
                 config.IsEnabled = Configuration.GetValue<bool>("IsHttpStatusTestEnabled");
             });
 
